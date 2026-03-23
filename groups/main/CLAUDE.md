@@ -40,7 +40,7 @@ When tracked files change, remind Dipu to git push /disk2/AI/NanoClaw/.
 
 ## ⚠️ RULE #5 — CONFIG EXPORT ON PARAMETER CHANGE
 
-Any task/schedule/keyword/brand change → regenerate automation-config-export.csv → email dipu.das@gmail.com with subject "Automation Config Export — DD Mon YYYY".
+Any task/schedule/keyword/brand change → regenerate automation-config-export.csv → email [primary email — see verified_contacts.json] with subject "Automation Config Export — DD Mon YYYY".
 
 ---
 
@@ -110,7 +110,7 @@ No ## headings. No [links](url). No **double stars**.
 *BigBasket (keyword: grocery_time)*
 - Fetch CSV from Gmail
 - Connect Chrome CDP: http://172.17.0.1:9223
-- Phone: 9880298470 — ASK before OTP
+- Phone: [phone — see verified_contacts.json] — ASK before OTP
 - Script: /workspace/group/bigbasket-chrome-start.sh
 
 *Keywords*
