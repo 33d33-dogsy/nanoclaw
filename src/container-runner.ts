@@ -113,6 +113,17 @@ function buildVolumeMounts(
     }
   }
 
+// Gmail MCP credentials — persistent mount so OAuth tokens survive container restarts
+  const gmailMcpDir = path.join(GROUPS_DIR, 'whatsapp_main', 'gmail-mcp');
+  fs.mkdirSync(gmailMcpDir, { recursive: true });
+  mounts.push({
+    hostPath: gmailMcpDir,
+    containerPath: '/home/node/.gmail-mcp',
+    readonly: false,
+  });
+
+
+
   // Per-group Claude sessions directory (isolated from other groups)
   // Each group gets their own .claude/ to prevent cross-group session access
   const groupSessionsDir = path.join(
@@ -216,7 +227,7 @@ function buildContainerArgs(
   mounts: VolumeMount[],
   containerName: string,
 ): string[] {
-  const args: string[] = ['run', '-i', '--rm', '--name', containerName];
+  const args: string[] = ['run', '-i', '--rm', '--name', containerName, '--cpus=0.8', '--memory=1g'];
 
   // Pass host timezone so container's local time matches the user's
   args.push('-e', `TZ=${TIMEZONE}`);
@@ -694,7 +705,7 @@ export function writeGroupsSnapshot(
   groupFolder: string,
   isMain: boolean,
   groups: AvailableGroup[],
-  _registeredJids: Set<string>,
+  registeredJids: Set<string>,
 ): void {
   const groupIpcDir = resolveGroupIpcPath(groupFolder);
   fs.mkdirSync(groupIpcDir, { recursive: true });

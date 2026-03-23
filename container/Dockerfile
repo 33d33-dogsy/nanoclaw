@@ -32,6 +32,7 @@ ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
 
 # Install agent-browser and claude-code globally
 RUN npm install -g agent-browser @anthropic-ai/claude-code
+#RUN npm install -g puppeteer-core puppeteer-extra puppeteer-extra-plugin-stealth
 
 # Create app directory
 WORKDIR /app
