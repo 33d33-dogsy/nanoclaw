@@ -36,3 +36,4 @@ groups/global/*
 .nanoclaw/
 
 agents-sdk-docs
+!groups/whatsapp_main/CLAUDE.md
